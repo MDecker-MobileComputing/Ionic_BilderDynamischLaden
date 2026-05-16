@@ -64,9 +64,10 @@ export class FlickerService {
     const anzahlBilder = Number( antwort?.photos?.total ?? 0 );
     console.log( "Anzahl gefundener Bilder: " + anzahlBilder );
 
+    // für "Quarzmolch" wird kein einziges Bild gefunden
     if ( anzahlBilder == 0 ) {
 
-      throw new Error( `Kein einziges  Bild gefunden für Suchbegriff: ${suchbegriff}` );
+      throw new Error( `Kein einziges  Bild gefunden für Suchbegriff: ${suchbegriff}` );      
     }
     
     // zufälliges Bild aus der Antwort auswählen

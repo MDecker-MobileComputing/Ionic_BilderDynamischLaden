@@ -50,8 +50,9 @@ export class Tab1Page {
     }
     catch ( fehler ) {
 
-      console.error( "Fehler beim Abruf von Bild von Flickr: ", fehler );
-      this.fehlermeldung = "Fehler beim Abruf von Bild von Flickr. Bitte überprüfen Sie Ihre Internetverbindung und Ihren API-Key.";
+      const fehlermeldung = `Fehler beim Abruf von Bild von Flickr: ${fehler}`;
+      console.error( fehlermeldung );
+      this.fehlermeldung = fehlermeldung;
     }    
   }
 
