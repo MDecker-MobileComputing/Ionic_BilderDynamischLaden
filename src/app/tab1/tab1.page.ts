@@ -37,17 +37,22 @@ export class Tab1Page {
 
     this.fehlermeldung = "";
     
-    const neuerSuchbegriff = this.suchbegriffEingabe.trim();
-    if ( neuerSuchbegriff.length == 0 ) {
+    const suchbegriffTrimmed = this.suchbegriffEingabe.trim();
+    if ( suchbegriffTrimmed.length == 0 ) {
 
       this.fehlermeldung = "Bitte geben Sie einen Suchbegriff ein.";
       return;
     }
 
-    this.fehlermeldung = "Not implemented yet ...";
+    try {
 
-    //this.imageUrl = "https://live.staticflickr.com/65535/55271017041_50286238af_z.jpg";
+      this.bildUrl = await this.flickerService.bildSuchen( suchbegriffTrimmed );
+    }
+    catch ( fehler ) {
 
+      console.error( "Fehler beim Abruf von Bild von Flickr: ", fehler );
+      this.fehlermeldung = "Fehler beim Abruf von Bild von Flickr. Bitte überprüfen Sie Ihre Internetverbindung und Ihren API-Key.";
+    }    
   }
 
 

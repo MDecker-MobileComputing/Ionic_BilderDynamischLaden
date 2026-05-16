@@ -30,7 +30,8 @@ export class FlickerService {
    * 
    * @param suchbegriff Suchbegriff für Bild, z.B. "Brandenburger Tor"
    * 
-   * @param apiKey API-Key für Web-API von Flickr (optional); wird für Test von neu eingegebenen API-Keys gesetzt
+   * @param apiKey API-Key für Web-API von Flickr (optional); wird für Test von neu eingegebenen API-Keys gesetzt;
+   *               wenn nicht gesetzt, dann wird der API-Key aus den Einstellungen geladen
    * 
    * @returns Volle URL für ein Bild
    * 
@@ -48,7 +49,7 @@ export class FlickerService {
     url.searchParams.set( "api_key"       , apiKey                 );
     url.searchParams.set( "text"          , suchbegriff            );
     url.searchParams.set( "format"        , "json"                 );
-    url.searchParams.set( "per_page"      , "10"                   );
+    url.searchParams.set( "per_page"      , "25"                   );
     url.searchParams.set( "page"          , "1"                    );
     url.searchParams.set( "nojsoncallback", "1"                    );
 
@@ -72,8 +73,14 @@ export class FlickerService {
     const zufallsIndex = Math.floor( Math.random() * antwort.photos.photo.length );
     const zufaelligesBild = antwort.photos.photo[ zufallsIndex ];
 
-    const bildUrl = `https://live.staticflickr.com/${zufaelligesBild.server}/${zufaelligesBild.id}_${zufaelligesBild.secret}_z.jpg`;
+    const suffixGroesse = "z";
+    // kein Suffix: Standardgröße, oft etwa 500 px lange Seite.
+    // _m: kleine Version.
+    // _z: mittlere Version, oft 640 px lange Seite.
+    // _b: große Version, oft 1024 px lange Seite.
+    // _o: Original, falls verfügbar.
 
+    const bildUrl = `https://live.staticflickr.com/${zufaelligesBild.server}/${zufaelligesBild.id}_${zufaelligesBild.secret}_${suffixGroesse}.jpg`;
     return bildUrl;
   }
 
