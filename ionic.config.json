@@ -1,0 +1,7 @@
+{
+  "name": "BilderDynamischLaden",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
