@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Einstellungen</ion-title>
-      
-    
+    <ion-title>Einstellungen</ion-title>          
   </ion-toolbar>
 </ion-header>
 
@@ -12,4 +10,25 @@
       <ion-title size="large">Einstellungen</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-input
+        label="API-Key für Gemini"
+        labelPlacement="stacked"
+        type="password"
+        [(ngModel)]="apiKey"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-button expand="block" (click)="onApiKeyPruefenButton()">
+        API-Key prüfen und speichern
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="meldungApiKey" lines="none">
+      <ion-note [color]="meldungIstFehler ? 'danger' : 'success'">{{ meldungApiKey }}</ion-note>
+    </ion-item>
+  </ion-list>
 </ion-content>
