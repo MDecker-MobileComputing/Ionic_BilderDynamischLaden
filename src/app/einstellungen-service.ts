@@ -17,6 +17,9 @@ export class EinstellungenService {
   /** Schlüssel für Einstellung mit API-Key. */
   public static readonly SCHLUESSEL_API_KEY = "flickrApiKey";
 
+  /** Schlüssel für Einstellung mit Anzahl der Bilder pro Seite. */
+  public static readonly SCHLUESSEL_ANZAHL_BILDER_PRO_SEITE = "anzahlBilderProSeite";
+  
 
   /**
    * Speichert eine Einstellung. Alle Einstellungen werden als String gespeichert.
@@ -46,7 +49,8 @@ export class EinstellungenService {
    *
    * @returns String für `schluessel` oder `defaultWert` wenn nicht vorhanden
    */
-  public async leseEinstellung( schluessel: string, defaultWert: string = "" ): Promise<string> {
+  public async leseEinstellung( schluessel: string, 
+                                defaultWert: string = "" ): Promise<string> {
 
     const { value } = await Preferences.get({ key: schluessel });
     return value ?? defaultWert;
@@ -79,4 +83,32 @@ export class EinstellungenService {
             EinstellungenService.SCHLUESSEL_API_KEY, apiKey );
   }
 
+
+  /**
+   * Setzt die Anzahl der Bilder pro Seite mit Suchergebnissen in den Einstellungen. 
+   * Es wird nur eine Seite mit Suchergebnisse abgerufen.  
+   * 
+   * @param anzahl Anzahl der Bilder pro Seite mit Suchergebnissen
+   */
+  public async setzeAnzahlBilderProSeite( anzahl: number ): Promise<void> {
+
+    await this.setzeEinstellung( 
+            EinstellungenService.SCHLUESSEL_ANZAHL_BILDER_PRO_SEITE, 
+            anzahl + "" );
+  }
+
+
+  /**
+   * Holt die Anzahl der Bilder pro Seite aus den Einstellungen (es wird nur eine Seite
+   * mit Suchergebnisse abgerufen). 
+   * 
+   * @returns String mit Anzahl der Bilder; wird nur als Wert für URL-Parameter benötigt, deshalb
+   *          String und nicht Zahl; wenn nicht vorhanden, dann wird "25" zurückgegeben 
+   */
+  public async holeAnzahlBilderProSeite(): Promise<string> {
+    
+    const anzahlString = await this.leseEinstellung( 
+                          EinstellungenService.SCHLUESSEL_ANZAHL_BILDER_PRO_SEITE, "25" );  
+    return anzahlString;
+  }
 }

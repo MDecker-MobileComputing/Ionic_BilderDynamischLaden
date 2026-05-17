@@ -24,6 +24,9 @@ export class Tab2Page implements OnInit {
   /** Ist genau dann `true`, wenn `meldungApiKey` eine Fehlermeldung ist. */
   public meldungIstFehler: boolean = false;
 
+  /** Anzahl der Bilder pro Seite mit Suchergebnissen in den Einstellungen. */ 
+  public anzahlBilderProSeite: number = 25;
+
 
   /**
    * Konstruktor für *Dependency Injection*
@@ -91,4 +94,16 @@ export class Tab2Page implements OnInit {
       this.meldungIstFehler = true;
     }
   }
+
+
+  /**
+   * Event-Handler für Änderung der Anzahl der Bilder pro Seite mit Suchergebnissen. 
+   * Es wird die neue Anzahl in den Einstellungen gespeichert.
+   */
+  public async onAnzahlBilderProSeiteGeaendert() {
+
+    this.einstellungenService.setzeAnzahlBilderProSeite( 
+                                  this.anzahlBilderProSeite );
+  }
+
 }

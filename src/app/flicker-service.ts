@@ -17,13 +17,13 @@ export class FlickerService {
   /** Basis-URL für Web-API von Flickr. */
   readonly FLICKR_API_URL = "https://www.flickr.com/services/rest/";
 
+
   /**
    * Konstruktor für *Dependency Injection*
    */
   constructor( private einstellungenService: EinstellungenService,
                private httpClient: HttpClient ) {}
    
-
   /**
    * Methode für die Suche nach einem Bild auf Flickr. Es wird ein zufällig ausgewähltes Bild zurückgegeben, 
    * das zum Suchbegriff passt.
@@ -44,12 +44,14 @@ export class FlickerService {
       apiKey = await this.einstellungenService.holeApiKey();
     }
 
+    const anzahlBilderProSeite = await this.einstellungenService.holeAnzahlBilderProSeite();
+
     const url = new URL( this.FLICKR_API_URL );
     url.searchParams.set( "method"        , "flickr.photos.search" );
     url.searchParams.set( "api_key"       , apiKey                 );
     url.searchParams.set( "text"          , suchbegriff            );
     url.searchParams.set( "format"        , "json"                 );
-    url.searchParams.set( "per_page"      , "25"                   );
+    url.searchParams.set( "per_page"      , anzahlBilderProSeite   );
     url.searchParams.set( "page"          , "1"                    );
     url.searchParams.set( "nojsoncallback", "1"                    );
 
@@ -72,6 +74,7 @@ export class FlickerService {
     
     // zufälliges Bild aus der Antwort auswählen
     const zufallsIndex = Math.floor( Math.random() * antwort.photos.photo.length );
+    console.log( "Zufällig ausgewähltes Bild: " + zufallsIndex );
     const zufaelligesBild = antwort.photos.photo[ zufallsIndex ];
 
     const suffixGroesse = "z";
