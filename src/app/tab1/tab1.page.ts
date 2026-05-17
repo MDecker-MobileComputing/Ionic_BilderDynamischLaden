@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { FlickerService } from '../flicker-service';
+import { EinstellungenService } from '../einstellungen-service';
 
 
 /**
@@ -27,7 +28,8 @@ export class Tab1Page {
   /**
    * Konstruktor für *Dependency Injection*
    */
-  constructor( private flickerService: FlickerService ) {}
+  constructor( private flickerService: FlickerService,
+               private einstellungenService: EinstellungenService ) {}
 
 
   /**
@@ -41,6 +43,13 @@ export class Tab1Page {
     if ( suchbegriffTrimmed.length == 0 ) {
 
       this.fehlermeldung = "Bitte geben Sie einen Suchbegriff ein.";
+      return;
+    }
+
+    const apiKey = await this.einstellungenService.holeApiKey();
+    if ( apiKey === "" ) {
+      
+      this.fehlermeldung = "Bitte geben Sie einen API-Key ein.";
       return;
     }
 

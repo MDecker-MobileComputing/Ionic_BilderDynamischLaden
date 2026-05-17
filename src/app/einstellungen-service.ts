@@ -61,7 +61,8 @@ export class EinstellungenService {
   public async holeApiKey(): Promise<string> {
 
     const apiKey = 
-      await this.leseEinstellung( EinstellungenService.SCHLUESSEL_API_KEY, "" );
+      await this.leseEinstellung( 
+              EinstellungenService.SCHLUESSEL_API_KEY, "" );
 
     return apiKey;
   }
@@ -74,7 +75,8 @@ export class EinstellungenService {
    */
   public async setzeApiKey( apiKey: string ): Promise<void> {
 
-    await this.setzeEinstellung( EinstellungenService.SCHLUESSEL_API_KEY, apiKey );
+    await this.setzeEinstellung( 
+            EinstellungenService.SCHLUESSEL_API_KEY, apiKey );
   }
 
 }
