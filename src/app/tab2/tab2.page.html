@@ -28,10 +28,14 @@
       </ion-button>
     </ion-item>
 
+    <ion-item *ngIf="meldungApiKey" lines="none">
+      <ion-note [color]="meldungIstFehler ? 'danger' : 'success'">{{ meldungApiKey }}</ion-note>
+    </ion-item>
+
     <ion-item class="einstellung-block-abstand-oben">
       <div class="range-container">
         <ion-label>
-          Anzahl Bilder pro Seite: {{ anzahlBilderProSeite }}
+          Anzahl Bilder pro Suchanfrage: {{ anzahlBilderProSeite }}
         </ion-label>
         <ion-range
           min="5"
@@ -46,8 +50,10 @@
       </div>
     </ion-item>
 
-    <ion-item *ngIf="meldungApiKey" lines="none">
-      <ion-note [color]="meldungIstFehler ? 'danger' : 'success'">{{ meldungApiKey }}</ion-note>
+    <ion-item lines="none">
+      <ion-note>
+        Aus den für eine Suchanfrage zurückgelieferten Bildern wird eines zufällig 
+        ausgewählt und angezeigt.</ion-note>
     </ion-item>
 
   </ion-list>
