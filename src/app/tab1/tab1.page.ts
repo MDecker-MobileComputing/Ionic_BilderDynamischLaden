@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FlickerService } from '../flicker-service';
+import { FlickrService        } from '../flickr-service';
 import { EinstellungenService } from '../einstellungen-service';
 
 
@@ -28,7 +28,7 @@ export class Tab1Page {
   /**
    * Konstruktor für *Dependency Injection*
    */
-  constructor( private flickerService: FlickerService,
+  constructor( private flickrService       : FlickrService,
                private einstellungenService: EinstellungenService ) {}
 
 
@@ -55,7 +55,7 @@ export class Tab1Page {
 
     try {
 
-      this.bildUrl = await this.flickerService.bildSuchen( suchbegriffTrimmed );
+      this.bildUrl = await this.flickrService.bildSuchen( suchbegriffTrimmed );
     }
     catch ( fehler ) {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EinstellungenService } from '../einstellungen-service';
-import { FlickerService } from '../flicker-service';
+import { FlickrService        } from '../flickr-service';
 
 
 /**
@@ -32,7 +32,7 @@ export class Tab2Page implements OnInit {
    * Konstruktor für *Dependency Injection*
    */
   constructor( private einstellungenService: EinstellungenService,
-               private flickerService      : FlickerService ) {}
+               private flickrService       : FlickrService          ) {}
 
 
   /**
@@ -77,7 +77,7 @@ export class Tab2Page implements OnInit {
     try {
 
       // Dummy-Aufruf, um zu prüfen, ob API-Key funktioniert und Web-API von Flickr erreichbar ist
-      const bildUrl = await this.flickerService.bildSuchen( "Berlin", this.apiKey );
+      const bildUrl = await this.flickrService.bildSuchen( "Berlin", this.apiKey );
 
       console.log( "Testaufruf erfolgreich, Bild-URL: " + bildUrl );
 
