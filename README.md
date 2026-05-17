@@ -14,11 +14,7 @@ lädt.
 
 <br>
 
-![Screenshot 1: Hauptseite](screenshot_1.png)
-
-&nbsp;
-
-![Screenshot 2: Einstellungen](screenshot_2.png)
+![Screenshot 1: Hauptseite](screenshot_1.png) &nbsp; ![Screenshot 2: Einstellungen](screenshot_2.png)
 
 <br>
 
