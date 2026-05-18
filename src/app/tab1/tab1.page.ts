@@ -41,6 +41,7 @@ export class Tab1Page {
   public async onSuchenButton() {
 
     this.fehlermeldung = "";
+    this.bildUrl       = "";
 
     const suchbegriffTrimmed = this.suchbegriffEingabe.trim();
     if ( suchbegriffTrimmed.length == 0 ) {
@@ -63,9 +64,8 @@ export class Tab1Page {
     }
     catch ( fehler ) {
 
-      const fehlermeldung = `Fehler beim Abruf von Bild von Flickr: ${fehler}`;
-      console.error( fehlermeldung );
-      this.fehlermeldung = fehlermeldung;
+      this.fehlermeldung = `Fehler beim Abruf von Bild von Flickr: ${fehler}`;
+      console.error( this.fehlermeldung );
     }
     finally {
 
