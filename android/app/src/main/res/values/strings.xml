@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">BilderDynamischLaden</string>
-    <string name="title_activity_main">BilderDynamischLaden</string>
+    <string name="app_name">Flickr-Suche</string>
+    <string name="title_activity_main">Flickr-Suche</string>
     <string name="package_name">de.eldecker.ionic.bilderdynamisch</string>
     <string name="custom_url_scheme">de.eldecker.ionic.bilderdynamisch</string>
 </resources>
