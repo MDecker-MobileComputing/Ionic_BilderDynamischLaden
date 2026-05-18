@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Bildsuche</ion-title>          
+    <ion-title>Bildsuche</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -27,11 +27,14 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6">
-        <ion-button expand="block" (click)="onSuchenButton()">Suchen</ion-button>
+        <ion-button expand="block"
+                    [disabled]="ladevorgangLaeuft"
+                    (click)="onSuchenButton()">Suchen</ion-button>
       </ion-col>
       <ion-col size="6">
-        <ion-button expand="block" 
-                    fill="outline" 
+        <ion-button expand="block"
+                    fill="outline"
+                    [disabled]="ladevorgangLaeuft"
                     (click)="onZuruecksetzenButton()">Zurücksetzen</ion-button>
       </ion-col>
     </ion-row>
@@ -39,10 +42,10 @@
 
   <ion-item lines="none">
     <ion-note>Mehrfach auf "Suchen" klicken, um weitere Bilder anzuzeigen.</ion-note>
-  </ion-item>  
+  </ion-item>
 
   &nbsp;
-  
+
   <ion-img [src]="bildUrl || 'assets/icon/favicon.png'"></ion-img>
   <!-- assets/icon/favicon.png ist Default-Bild -->
 

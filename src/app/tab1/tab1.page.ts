@@ -24,6 +24,9 @@ export class Tab1Page {
   /** Fehlermeldung, die in <ion-note> angezeigt wird */
   public fehlermeldung : string = "";
 
+  /** Flag zum Deaktivieren von Buttons während des Ladens */
+  public ladevorgangLaeuft: boolean = false;
+
 
   /**
    * Konstruktor für *Dependency Injection*
@@ -38,7 +41,7 @@ export class Tab1Page {
   public async onSuchenButton() {
 
     this.fehlermeldung = "";
-    
+
     const suchbegriffTrimmed = this.suchbegriffEingabe.trim();
     if ( suchbegriffTrimmed.length == 0 ) {
 
@@ -48,13 +51,14 @@ export class Tab1Page {
 
     const apiKey = await this.einstellungenService.holeApiKey();
     if ( apiKey === "" ) {
-      
+
       this.fehlermeldung = "Bitte geben Sie einen API-Key ein.";
       return;
     }
 
     try {
 
+      this.ladevorgangLaeuft = true;
       this.bildUrl = await this.flickrService.bildSuchen( suchbegriffTrimmed );
     }
     catch ( fehler ) {
@@ -62,7 +66,11 @@ export class Tab1Page {
       const fehlermeldung = `Fehler beim Abruf von Bild von Flickr: ${fehler}`;
       console.error( fehlermeldung );
       this.fehlermeldung = fehlermeldung;
-    }    
+    }
+    finally {
+
+      this.ladevorgangLaeuft = false;
+    }
   }
 
 
